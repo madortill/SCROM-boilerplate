@@ -1,0 +1,356 @@
+/* תרגול */
+.topButtonPractice {
+    width: 8vw;
+    top: 12vh;
+    left: 5vw;
+}
+
+.titleContainerPractice{
+    height: 10vh;
+}
+
+.practiceCharacter {
+    width: 38vw;
+    position: absolute;
+    top: 12vh;
+}
+
+.practiceQuestionBobble {
+    position: absolute;
+    top: 33vh;
+    width: 100vw;
+    height: 28vh;
+}
+
+.question {
+    position: absolute;
+    top: 38vh;
+    padding: 1em;
+    font-size: 3vmax;
+}
+
+.practiceQuestionSqure {
+    width: 8vw;
+}
+
+.answersContainer {
+    display: flex;
+    flex-direction: column;
+    height: 28vh;
+    font-size: 2vmax;
+    justify-content: space-between;
+    position: absolute;
+    top: 61.5vh;
+    padding: 0.5em;
+    padding-top: 0;
+}
+
+.ans {
+    display: flex;
+    align-items: center;
+}
+
+.ans div {
+    padding: 0.5em;
+    margin-right: 0.5em;
+    border-radius: 0.4em;
+}
+
+.correctAnswer {
+    background-color: rgba(98, 212, 159, 0.671);
+}
+
+.wrongAnswer {
+    background-color: rgba(241, 76, 76, 0.671);
+}
+
+.practiceBottomButton {
+    width: 25vw;
+    position: absolute;
+    bottom: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.practiceRightAnswersConteiner {
+    background-color: rgb(216, 183, 78);
+    height: 9vh;
+    width: 46vh;
+    border-radius: 1em;
+    padding-top: 1em;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.5em;
+    color: white;
+    position: absolute;
+    top: 52vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* מבחן */
+.beforeExamInstractions {
+    width: 95.7vw;
+    height: 11vh;
+    background-color: #79bee0bb;
+    padding: 0.5em;
+    font-size: 2.5vmax;
+    font-weight: 500;
+}
+
+.examCharacter {
+    width: 37vw;
+}
+
+.beforeExamBobble {
+    width: 50vw;
+    height: 27vh;
+    margin-top: 6vh;
+    background-image: url(../assets/images/grapics/test/before-test-speech-bubble.svg);
+    background-repeat: no-repeat;
+    background-size: 100%, 100%;
+    padding: 1em;
+    padding-right: 4em;
+    text-align: center;
+    font-size: 2.75vmax;
+}
+
+.examNameInput {
+    border: none;
+    width: 98.5vw;
+    height: 6vh;
+    background-color: #79bee0bb;
+    font-weight: 500;
+    font-size: 2vmax;
+    font-family: 'segoeu';
+    text-align: center;
+    color: black;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5vh;
+}
+
+.flexTwo {
+    display: flex;
+    flex-direction: row;
+}
+
+.examNameInput:focus{
+    outline: none;
+}
+
+.beforeTestButtons {
+    height: 5.5vh;
+}
+
+.beforeTestButtonsContainer {
+    display: flex;
+    width: 100vw;
+    position: absolute;
+    justify-content: center;
+    bottom: 2vh;
+}
+
+.binaryMarks {
+    height: 4vh;
+}
+
+.binary .ans {
+    width: 35vw;
+    padding: 0.5em;
+    justify-content: space-evenly;
+    font-weight: 500;
+    font-size: 1.4em;
+    background-color: white;
+    border-radius: 0.5em;
+    height: 6vh;
+}
+
+.binary {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100vw;
+    position: absolute;
+    top: 45vh;
+}
+
+.examQuestionContainer .question{
+    position: static;
+} 
+
+.answersContainers {
+    position: static;
+}  
+
+.answerTracker {
+    background-color: #79BEE0;
+    width: 90vw;
+    height: 13vh;
+    position: absolute;
+    bottom: 10vh;
+    left: 2.8vw;
+    border-radius: 1.4em;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.75em;
+    justify-content: center;
+}
+
+.answerPill {
+    background-color: #f4f4f4b8;
+    width: 7.5vw;
+    height: 4.4vh;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0.2em;
+    font-size: 2.25vmax;
+    padding-top: 0.6vh;
+}
+
+.examSubmit{
+    position: absolute;
+    bottom: 1vh;
+    width: 28vw;
+    left: 5vh;
+}
+
+.multiple {
+    top: 31vh;
+}
+
+.testCurrentQuestionDisplay {
+    background-color: #79BEE0;
+    width: 39vw;
+    height: 5vh;
+    position: absolute;
+    top: 12vh;
+    border-radius: 2em;
+    left: 5vw;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    font-size: 2.5vmax;
+    padding-top: 0.6em;
+}
+
+.testArrow {
+    padding: 0.2em;
+    width: 11vw;
+} 
+
+.testArrows {
+    position: absolute;
+    bottom: 1vh;
+    right: 2vw;
+    width: 27vw;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* פופ אף מבחן */
+.popUpContainer {
+    background-image: url(../assets/images/grapics/test/end-popup.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 54vh;
+    height: 24vh;
+    position: absolute;
+    bottom: -24vh;
+    left: 2vw;
+    font-size: 2.5vmax;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    animation: popUpEnter 1s forwards;
+}
+
+.popUpButtons {
+    height: 6vh;
+    padding: 0.3em;
+}
+
+@keyframes popUpEnter {
+    100% {
+        bottom: -1vh;
+    }
+}
+
+/* עמוד סוף מבחן */
+.afterExamPage {
+    text-align: center;
+    font-weight: 500;
+    font-size: 3vmax;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 74vh;
+}
+
+.userNameBig {
+    color: #79bee0;
+}
+
+.ExamgradeConteiner {
+    background-image: url("../assets/images/grapics/test/happy-smiley-face.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 8vh;
+    width: 50vw;
+    padding-left: 2em;
+    padding-top: 1em;
+}
+
+.rightAnswersConteiner {
+    background-color: #79bee0bb;
+    height: 9vh;
+    width: 46vh;
+    border-radius: 1em;
+    padding-top: 1em;
+}
+
+.timerConteiner {
+    background-image: url("../assets/images/grapics/test/timer.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 54vh;
+    height: 8vh;
+    padding-top: 1em;
+}
+
+.afterExamData {
+    background-color: #79bee0bb;
+    height: 5vh;
+    font-size: 3vmax;
+    width: 98vw;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    padding: 0 0.2em;
+}
+
+.afterExamButtons {
+    height: 5.5vh;
+    padding: 0.3em;
+}
+
+.questionContainer {
+    height: 46vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.list {
+    padding-inline-start: 1em;
+    margin-top: 0.2em;
+}
+
+.hidden {
+    display: none;
+}

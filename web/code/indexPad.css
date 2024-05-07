@@ -1,0 +1,429 @@
+@font-face {
+    font-family: segoeu;
+    src: url("../assets/fonts/segoeui.ttf");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: segoeu;
+    src: url("../assets/fonts/seguisb.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: segoeu;
+    src: url("../assets/fonts/segoeuib.ttf");
+    font-weight: 800;
+}
+
+html, body {
+    -webkit-user-select: none;
+    font-family: "segoeu";
+    font-weight: 100;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-color: #f4f4f4;
+}
+
+/* טוען */
+.loader {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #79BEE0;
+    font-size: 2em;
+    font-weight: 800;
+}
+
+.loader > img {
+    width: 50vw;
+}
+
+.loader.fade {
+    animation: fadeOut 1s 2s forwards;
+}
+
+.computer {
+    width: 100vw;
+    height: 20vh;
+}
+
+@keyframes fadeOut {
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* צבעים */
+.blue {
+    filter: hue-rotate(140deg);
+}
+
+.lightGreen {
+    filter: hue-rotate(30deg);
+}
+
+.teal {
+    filter: hue-rotate(110deg);
+}
+
+.purple {
+    filter: hue-rotate(205deg);
+}
+
+.yellow {
+    filter: hue-rotate(0deg);
+}
+
+.orange {
+    filter: hue-rotate(320deg);
+}
+
+.darkGreen {
+    filter: hue-rotate(80deg);
+}
+
+.pink {
+    filter: hue-rotate(280deg);
+}
+
+.gray {
+    filter: grayscale(100);
+}
+
+.sub-titles {
+    font-weight: bold;
+    padding-top: 1em;
+    font-size: 2.5vmax;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+/* חלק עליון */
+.topButton {
+    width: 15vw;
+    position: absolute;
+    top: 9vh;
+    left: 9vw;
+}
+
+.titleConeiner {
+    color: #f4f4f4;
+    font-weight: 800;
+    font-size: 2.5em;
+    position: absolute;
+    top: 0vh;
+    right: 1vw;
+    width: 53vw;
+    text-align: center;
+    height: 15vh;
+}
+
+.title {
+    width: 53vw;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1vw;
+    font-size: 6vmax;
+}
+
+.titleMedShelfs {
+    font-size: 5vmax;
+    right: 16vw;
+}
+
+.titelMedId {
+    right: 1vw;
+    font-size: 5vmax;
+}
+
+/* חיפוש */
+.searchBoxHolder {
+    width: 73vw;
+    height: 13vh;
+    position: absolute;
+    top: 9vh;
+    left: 3vw;
+    z-index: 2;
+}
+
+.searchBox {
+    width: 52vw;
+    height: 4vh;
+    font-size: 2.5vmax;
+    border-radius: 10vw;
+    position: absolute;
+    top: 10.7vh;
+    left: 20vw;
+    border: none;
+    background-color: #f4f4f4;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    direction: ltr;
+    font-family: "segoeu";
+    text-align: center;
+    z-index: 2;
+    outline: none;
+}
+
+.searchBox:focus{
+    outline: none;
+    top: 11vh;
+}
+
+.dropDown{
+    pointer-events: none;
+    width: 73vw;
+    height: 63vh;
+    position: absolute;
+    left: 3vw;
+    top: 23vh;
+    overflow-y: scroll;
+}
+
+.dropDownItem {
+    width: 73vw;
+    height: 7vh;
+    border-radius: 20vw;
+    text-align: center;
+    padding-top: 0.4em;
+    margin-top: 0.1em;
+    background-color: #f4f4f4;
+}
+
+.darkScreen {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.411);
+    z-index: 1;
+    top: 0;
+}
+
+/* אודות */
+.aboutButton {
+    width: 7vw;
+    position: absolute;
+    top: 2vh;
+    left: 3vw;
+}
+
+.aboutPage {
+    padding: 1vh 4vw;
+    height: 67vh;
+    width: 92vw;
+    position: absolute;
+    font-size: 2vmax;
+    top: 20vh;
+    overflow: hidden;
+}
+
+.aboutHeadline {
+    width: 20vw;
+    color: #79BEE0;
+    display: block;
+    margin: auto;
+    font-weight: 800;
+    font-size: 4vmax;
+}
+
+.logos {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 55vh;
+}
+
+.logos > img {
+    width: 21vw;
+}
+
+/* כתורים של תרופות ששולחים ללומדות */
+.mainPageButton {
+    background-color: white;
+    border-radius: 0.8em;
+    height: 15vh;
+    width: 86vw;
+    margin: auto;
+    margin-top: 2em;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.27em;
+    display: flex;
+}
+
+.homePageButtonsScroll::-webkit-scrollbar {
+    display: none;
+}
+
+.medHeadline {
+    width: 60vw;
+    font-size: 3vmax;
+    padding: 2em 0.6em;
+    padding-top: 1.3em;
+    position: relative;
+    left: 4vw;
+}
+
+.mainPagePic {
+    height: 26vw;
+    position: relative;
+    top: -2vh;
+    left: 5vw;
+}
+
+.picLeft{
+    left: -5vw;
+}
+
+.homePageButtonsScroll {
+    overflow-y: scroll;
+    height: 62vh;
+    margin-top: 0.5em;
+}
+
+.testButton {
+  position: absolute;
+  bottom: 2vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* תעודת זהות של תרופות */
+.medicineId {
+    pointer-events: none;
+    padding: 1vh 4vw;
+    height: 65vh;
+    width: 92vw;
+    font-size: 2vmax;
+    position: absolute;
+    top: 22vh;
+    overflow-y: scroll;
+}
+
+.medicineId::-webkit-scrollbar {
+    display: none;
+}
+
+.pic {
+    height: 19vh;
+    position: absolute;
+    left: 5vw;
+}
+
+.idNextToPic {
+    width: 42vw;
+}
+
+/* מדפים של תרופות */
+.downButton {
+    width: 10vw;
+    position: absolute;
+    left: 2vw;
+}
+
+.shelfs {
+    width: 100vw;
+    background-color: white;
+    height: 8vh;
+    margin-top: 1em;
+}
+
+.shelf {
+    position: relative;
+    top: 3vh;
+}
+
+.shelfHedline {
+    position: relative;
+    top: 2vh;
+    font-weight: 500;
+    font-size: 2.5vmax;
+    padding-right: 1em;
+}
+
+.shelfsdropDown {
+    padding: 0 1em;
+    font-size: 2vmax;
+}
+
+.shelfMedPic {
+    height: 7vh;
+    padding: 0.5em;
+    padding-right: 0.1em;
+}
+
+.shelfMedPicContainer {
+    width: 44vw;
+    background-color: white;
+    height: 12vh;
+    border-radius: 1em;
+    display: flex;
+    align-items: center;
+    font-size: 2vmax;
+    margin-bottom: 1em;
+    direction: ltr;
+}
+
+.shelfPicSection {
+    padding-top: 1em;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.medShelf {
+    height: 62vh;
+    overflow-y: scroll;
+    margin-top: 0.5em;
+}
+
+.medShelf::-webkit-scrollbar {
+    display: none;
+}
+
+.medTypeSymbol {
+    width: 17vw;
+    position: fixed;
+    top: 2.5vh;
+    left: 80vw;
+}
+
+.shelfsButtons {
+    width: 60vw;
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    bottom: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.buttons {
+    width: 25vw;
+}
+
+.homeButton {
+    width: 10vw;
+    position: absolute;
+    right: -15vw;
+}
