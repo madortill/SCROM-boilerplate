@@ -13,6 +13,7 @@ more info on how SCROM is built in https://scorm.com/scorm-explained/technical-s
 //ADL-provided API discovery algorithm
 ///////////////////////////////////////////
 var findAPITries = 0;
+var API = null;
  
 // The findAPI() function searches for an object named API_1484_11
 // in the window that is passed into the function.  If the object is
@@ -60,7 +61,102 @@ function getAPI()
    return theAPI;
 }
 
+////////////////////////////////////////////
+// wrap SCROM functions with error handlers
+///////////////////////////////////////////
 
+//Constants
+var SCORM_TRUE = "true";
+var SCORM_FALSE = "false";
+var SCORM_NO_ERROR = "0";
+
+//Since the Unload handler will be called twice, from both the onunload
+//and onbeforeunload events, ensure that we only call LMSFinish once.
+var terminateCalled = false;
+
+//Track whether or not we successfully initialized.
+var initialized = false;
+
+function ScormProcessInitialize(){
+    var result;
+    API = getAPI(window);
+
+    if (API == null){
+        alert("שגיאה: לא נוצר קשר עם הקמפוס הדיגיטלי. יכול להיות שהתוצאות שלך לא יישמרו");
+        return;
+    }
+    result = API.LMSInitialize("");
+    if (result == SCORM_FALSE){
+        logError();
+        return;
+    }
+    initialized = true;
+}
+
+function ScormProcessTerminate(){ 
+    var result;
+    //Don't terminate if we haven't initialized or if we've already terminated
+    if (initialized == false || terminateCalled == true){return;}
+    result = API.LMSFinish("");
+    terminateCalled = true;
+    if (result == SCORM_FALSE){
+        logError();
+        return;
+    }
+}
+
+function logError (msg) {
+    var errorNumber = API.LMSGetLastError();
+    var errorString = API.LMSGetErrorString(errorNumber);
+    var diagnostic = API.LMSGetDiagnostic(errorNumber);
+    
+    var errorDescription = "Number: " + errorNumber + "\nDescription: " + errorString + "\nDiagnostic: " + diagnostic;
+    
+    alert(msg || "שגיאה: לא נוצר קשר עם הקמפוס הדיגיטלי. יכול להיות שהתוצאות שלך לא יישמרו");
+    console.log("Error description: " + errorDescription)
+    return;
+}
+
+//There are situations where a LMSGetValue call is expected to have an error
+//and should not alert the user.
+function ScormProcessGetValue(element, checkError){
+    var result;
+    if (initialized == false || terminateCalled == true){return;}
+    result = API.LMSGetValue(element);
+    if (checkError == true && result == ""){
+        var errorNumber = API.LMSGetLastError();
+        if (errorNumber != SCORM_NO_ERROR){
+            logError('הערך לא נמצא בקמפוס');
+            return null;
+        }
+    }
+    
+    return result;
+}
+
+function ScormProcessSetValue(element, value){
+    var result;
+    if (initialized == false || terminateCalled == true){return;}
+    result = API.LMSSetValue(element, value);
+    if (result == SCORM_FALSE){
+        logError('הערך לא נשמר בקמפוס')
+        return;
+    }
+    
+}
+
+function ScormProcessCommit(){
+    var result;
+    result = API.LMSCommit("");
+    if (result == SCORM_FALSE){
+    logError('Error - could not invoke commit')
+    return;
+    }
+}
+
+///////////////////////////////////////////
+//Functions for outsize users
+///////////////////////////////////////////
 //called from the the JS of the lomda to record the results of a test
 //passes in score as a percentage
 function finishTestSCROM (score, passThreshold = 50) {
@@ -77,102 +173,9 @@ function finishTestSCROM (score, passThreshold = 50) {
     ScormProcessCommit()
 }
 
-
-
-////////////////////////////////////////////
-// wrap SCROM functions with error handlers
-///////////////////////////////////////////
-
-//Constants
-var SCORM_TRUE = "true";
-var SCORM_FALSE = "false";
-var SCORM_NO_ERROR = "0";
-
-//Since the Unload handler will be called twice, from both the onunload
-//and onbeforeunload events, ensure that we only call Terminate once.
-var terminateCalled = false;
-
-//Track whether or not we successfully initialized.
-var initialized = false;
-
-function ScormProcessInitialize(){
-    var result;
-    GetAPI(window);
-
-    if (API == null){
-        alert("שגיאה: לא נוצר קשר עם הקמפוס הדיגיטלי. יכול להיות שהתוצאות שלך לא יישמרו");
-        return;
-    }
-    result = API.Initialize("");
-    if (result == SCORM_FALSE){
-        logError();
-        return;
-    }
-    initialized = true;
-}
-
-function ScormProcessTerminate(){ 
-    var result;
-    //Don't terminate if we haven't initialized or if we've already terminated
-    if (initialized == false || terminateCalled == true){return;}
-    result = API.Terminate("");
-    terminateCalled = true;
-    if (result == SCORM_FALSE){
-        logError();
-        return;
-    }
-}
-
-function logError (msg) {
-    var errorNumber = API.GetLastError();
-    var errorString = API.GetErrorString(errorNumber);
-    var diagnostic = API.GetDiagnostic(errorNumber);
-    
-    var errorDescription = "Number: " + errorNumber + "\nDescription: " + errorString + "\nDiagnostic: " + diagnostic;
-    
-    alert(msg || "שגיאה: לא נוצר קשר עם הקמפוס הדיגיטלי. יכול להיות שהתוצאות שלך לא יישמרו");
-    console.log("Error description: " + errorDescription)
-    return;
-}
-
-//There are situations where a GetValue call is expected to have an error
-//and should not alert the user.
-function ScormProcessGetValue(element, checkError){
-    var result;
-    if (initialized == false || terminateCalled == true){return;}
-    result = API.GetValue(element);
-    if (checkError == true && result == ""){
-        var errorNumber = API.GetLastError();
-        if (errorNumber != SCORM_NO_ERROR){
-            logError('הערך לא נמצא בקמפוס')
-        }
-    }
-    
-    return result;
-}
-
-function ScormProcessSetValue(element, value){
-    var result;
-    if (initialized == false || terminateCalled == true){return;}
-    result = API.SetValue(element, value);
-    if (result == SCORM_FALSE){
-        logError('הערך לא נשמר בקמפוס')
-        return;
-    }
-    
-}
-
-function ScormProcessCommit(){
-    var result;
-    result = API.Commit("");
-    if (result == SCORM_FALSE){
-        var errorNumber = API.GetLastError();
-        var errorString = API.GetErrorString(errorNumber);
-        var diagnostic = API.GetDiagnostic(errorNumber); 
-        var errorDescription = "Number: " + errorNumber + "\nDescription: " + errorString + "\nDiagnostic: " + diagnostic;
-        alert("Error - Could not invoke Commit.\n\nYour results may not be recorded.\n\n" + errorDescription);
-        return;
-    }
+function reportComplete() {
+    ScormProcessSetValue("cmi.core.lesson_status", "completed");
+    ScormProcessCommit();
 }
 
 ///////////////////////////////////////////
@@ -196,7 +199,7 @@ function doStart(){
     //it's a best practice to set the completion status to incomplete when
     //first launching the course (if the course is not already completed)
     var completionStatus =  ScormProcessGetValue("cmi.core.lesson_status", true);
-    if (completionStatus == "unknown"){
+    if (completionStatus == "unknown" || !completionStatus){
         ScormProcessSetValue("cmi.core.lesson_status", "incomplete");
     }
 }
@@ -210,7 +213,7 @@ function doUnload(pressedExit){
     var endTimeStamp = new Date();
     var totalMilliseconds = (endTimeStamp.getTime() - startTimeStamp.getTime());
     // var scormTime = ConvertMilliSecondsIntoSCORM2004Time(totalMilliseconds);
-    API.GetValue("cmi.core.session_time")
+    console.log(API.LMSGetValue("cmi.core.session_time"));
     // ScormProcessSetValue("cmi.core.session_time", scormTime);
     ScormProcessSetValue("cmi.core.exit", "");
     ScormProcessTerminate();

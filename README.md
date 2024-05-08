@@ -10,3 +10,11 @@ in imsmanifest.xml:
 in your html
 - add script tag with the link to SCROMfunctions.js
 - call the function `finishTestSCROM` at the end of your test
+
+#Using scores: 
+- unless the lesson was completed before, at the start of the attampt the status of the lesson is set to "incomplete"
+- to report completion, call the function `reportComplete()`;
+- to report grade call the function `finishTestSCROM(score, thershold)`.
+        - score is a number between 0 and 100  
+        - threshold is optional and determines the minumun thershold to pass the lesson (deafult: 50)
+            all scores equal to or above the threshold are considered "passed" 
